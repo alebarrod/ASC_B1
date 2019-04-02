@@ -27,7 +27,7 @@ nreal = 30
 nbin = 0
 ncon = 0
 nobj = 2
-p = 8  #Numero de vectores peso y dimension
+p = int(input("Introduzca las dimensiones del problema (4 o 16)"))#4  #Numero de vectores peso y dimension
 
 class Subproblema:
     def __init__(self, peso, vecinos):
@@ -59,7 +59,7 @@ def MYSIGN(x):
         res = -1.0
     return res
 
-nreal=4
+nreal=p
 nbin=0
 ncon=2
 nobj=2
