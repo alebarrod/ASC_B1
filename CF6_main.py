@@ -73,7 +73,7 @@ def CF6(xreal):
     sum1 = 0.0
     sum2 = 0.0
 
-    for j in range(2, 4):
+    for j in range(2, 5):
             if (j % 2 == 1):
                     yj     = xreal[j-1] - 0.8*xreal[0]*math.cos(6.0*PI*xreal[0] + j*PI/nreal)
                     sum1   = sum1 + yj*yj
