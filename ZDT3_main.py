@@ -248,16 +248,13 @@ def main():
     j = 0
     #plotGraph(listaSubproblemas)
 
-    
-    for individuo in poblacion: #Cuando acabemos 
-        j = j + 1
-        print("G: ", j)
-        
-        for repeticion in range(0, G):
+
+    for subproblema in listaSubproblemas:
+        i = i + 1
+        print("N: ", i)
+        for individuo in poblacion: #Cuando acabemos 
+            for repeticion in range(0, G):
             
-            for subproblema in listaSubproblemas:
-                #i = i + 1
-                #print("N: ", i)
                 sample = random.sample(subproblema.vecinos, k = 3)  #3 elementos aleatorios para el crossover
 
                 individuosEvolucion = list()
