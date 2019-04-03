@@ -18,7 +18,7 @@ G = int(input("Numero de generaciones")) #800  #Numero de iteraciones
 P = float(input("Porcentaje de vencinos (de 0.0 a 1.0)")) #0.3
 C = N * P
 T = int(C)   #Numero de vecinos
-if T <4 : T = 4
+if T < 4 : T = 4
 
 Z = [1.0, 1.0] #Valor de referencia
 #////////////////////////////////////////////////////////////////////////////////
