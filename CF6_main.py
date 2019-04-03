@@ -99,7 +99,7 @@ def gte(peso, f1, f2, constr1, constr2):
         c1 = abs(constr1)
     if constr2 < 0:
         c2 = abs(constr2)
-    return max(peso[0] * abs(f1 - Z[0]) + c1, peso[1] * abs(f2 - Z[1]) + c2)
+    return max(peso[0] * abs(f1 - Z[0]) + c1 + c2, peso[1] * abs(f2 - Z[1]) + c1 + c2)
     
 
 def checkZ(f1, f2):
@@ -288,7 +288,7 @@ def main():
         i = i + 1
         print("N: ", i)
         for individuo in poblacion: #Cuando acabemos 
-            for repeticion in range(0, G):
+            for repeticion in range(0, G-1):
                 sample = random.sample(subproblema.vecinos, k = 3)  #3 elementos aleatorios para el crossover
 
                 individuosEvolucion = list()
