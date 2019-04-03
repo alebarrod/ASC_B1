@@ -10,13 +10,15 @@ import copy
 #Static
 PI = 3.14159265358979
 _ROUND_ = 6
-_PROB_CROSSOVER_ = 0.2
-_PROB_MUTATE_ = 0.1
+_PROB_CROSSOVER_ = float(input("Probabilidad de realizar crossover (entre 0.0 y 1.0)")) #0.2
+_PROB_MUTATE_ = float(input("Probabilidad de mutar(entre 0.0 y 1.0)")) #0.1
 
-N = 50   #Numero de individuos
-G = 800  #Numero de iteraciones
-T = int(N*0.3)   #Numero de vecinos
-if T == 0: T = 1
+N = int(input("Numero de subproblemas")) #50   #Numero de individuos
+G = int(input("Numero de generaciones")) #800  #Numero de iteraciones
+P = float(input("Porcentaje de vencinos (de 0.0 a 1.0)")) #0.3
+C = N * P
+T = int(C)   #Numero de vecinos
+if T < 4 : T = 4
 
 Z = [1.0, 1.0] #Valor de referencia
 #////////////////////////////////////////////////////////////////////////////////
@@ -25,7 +27,7 @@ nreal = 30
 nbin = 0
 ncon = 0
 nobj = 2
-p = 8  #Numero de vectores peso y dimension
+p = int(input("Introduzca las dimensiones del problema (4 o 16)"))#4  #Numero de vectores peso y dimension
 
 class Subproblema:
     def __init__(self, peso, vecinos):
@@ -57,7 +59,7 @@ def MYSIGN(x):
         res = -1.0
     return res
 
-nreal=4
+nreal=p
 nbin=0
 ncon=2
 nobj=2
@@ -71,7 +73,7 @@ def CF6(xreal):
     sum1 = 0.0
     sum2 = 0.0
 
-    for j in range(2, 4):
+    for j in range(2, 5):
             if (j % 2 == 1):
                     yj     = xreal[j-1] - 0.8*xreal[0]*math.cos(6.0*PI*xreal[0] + j*PI/nreal)
                     sum1   = sum1 + yj*yj
@@ -97,7 +99,7 @@ def gte(peso, f1, f2, constr1, constr2):
         c1 = abs(constr1)
     if constr2 < 0:
         c2 = abs(constr2)
-    return max(peso[0] * abs(f1 - Z[0]) + c1, peso[1] * abs(f2 - Z[1]) + c2)
+    return max(peso[0] * abs(f1 - Z[0]) + c1 + c2, peso[1] * abs(f2 - Z[1]) + c1 + c2)
     
 
 def checkZ(f1, f2):
@@ -286,7 +288,7 @@ def main():
         i = i + 1
         print("N: ", i)
         for individuo in poblacion: #Cuando acabemos 
-            for repeticion in range(0, G):
+            for repeticion in range(0, G-1):
                 sample = random.sample(subproblema.vecinos, k = 3)  #3 elementos aleatorios para el crossover
 
                 individuosEvolucion = list()
